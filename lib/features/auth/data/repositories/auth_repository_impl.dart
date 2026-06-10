@@ -20,7 +20,7 @@ class AuthRepositoryImpl implements AuthRepository {
       if (user == null) {
         throw Exception('User not found');
       }
-      return UserModel.fromSupabaseUser(user.id, user.email??"",);
+      return UserModel.fromSupabaseUser(user.id, user.email??'',);
     
   }
 
@@ -30,5 +30,5 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  bool get isloggedIn => remoteDataSource.getCurrentSession() != null;
+  bool get isLoggedIn => remoteDataSource.getCurrentSession() != null;
 }
