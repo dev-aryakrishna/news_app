@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/%20dependency_injection/injection.dart';
 import 'package:news_app/features/auth/presentation/bloc/auth_state.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/primary_button.dart';
@@ -32,8 +31,6 @@ class _LoginPageState extends State<LoginPage> {
   }
  @override
   Widget build(BuildContext context) {
-    return BlocProvider(create: (_) => sl<AuthBloc>(),
-     child :Builder(builder:(context) {
       return BlocListener<AuthBloc , AuthState>(listener: (context , state){
         if(state is AuthAuthenticated){
           context.go(RouteNames.news);
@@ -118,9 +115,9 @@ class _LoginPageState extends State<LoginPage> {
       ),
     
       ),);
-  }),);
+  }
     
   }
-}
+
 
         
