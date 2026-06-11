@@ -7,6 +7,7 @@ import '../features/news/presentation/pages/news_list_page.dart';
 import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(
+  initialLocation: RouteNames.login,
   routes: [
     GoRoute(
       path: RouteNames.splash,
