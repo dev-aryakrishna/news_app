@@ -9,12 +9,24 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<void> signUp({required String email, required String password}) async {
-    await remoteDataSource.signUp(email: email, password: password);
+  Future<void> signUp({
+    required String fullname, 
+    required String phone,
+    required String email, 
+    required String password}) async {
+      print("Repository Signup called");
+      await remoteDataSource.signUp(
+      fullname: fullname,
+      phone: phone,
+      email: email, 
+      password: password);
+
+  
   }
 
   @override
   Future<UserEntity> login({required String email, required String password}) async {
+    print("Repository Login Called");
     final response = await remoteDataSource.login(email: email, password: password);
       final user = response.user;
       if (user == null) {

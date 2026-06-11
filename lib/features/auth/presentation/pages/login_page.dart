@@ -6,7 +6,8 @@ import '../../../../core/widgets/primary_button.dart';
 import '../../../../core/utilis/validators.dart';
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_event.dart';
-
+import 'package:go_router/go_router.dart';
+import '../../../../routes/route_names.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -71,13 +72,19 @@ class _LoginPageState extends State<LoginPage> {
                   PrimaryButton(
                      text: 'Login',
                     onPressed: (){
+                      debugPrint("Button clicked");
                       if(_formKey.currentState!.validate()) {
+                      debugPrint("Validation passed");
+
                         context.read<AuthBloc>().add(
                           LoginRequested(
                             email: _emailController.text.trim(),
                             password: _passwordController.text.trim(),
                           ),
-                        );
+                          
+                        ); 
+                      debugPrint(" Event added");
+
                       }
                     }
                   ),
@@ -88,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
 
                   TextButton(
                    onPressed: () {
-                       // Navigate to Signup Page
+                    context.push(RouteNames.signup);
+
                      },
                    child: Text("Don't have an account? Sign up"),
                   )
