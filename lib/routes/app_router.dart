@@ -10,7 +10,7 @@ import '../features/news/presentation/pages/news_list_page.dart';
 import 'route_names.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: RouteNames.login,
+  initialLocation: RouteNames.splash,
   routes: [
     GoRoute(
       path: RouteNames.splash,
@@ -18,11 +18,11 @@ final GoRouter appRouter = GoRouter(
     ),
     GoRoute(
       path: RouteNames.login,
-      builder: (context, state) => BlocProvider(create: (_)=>sl<AuthBloc>(),child: const LoginPage(),)
+      builder: (context, state) => const LoginPage(),
     ),
     GoRoute(
       path: RouteNames.signup,
-      builder: (context, state) => BlocProvider(create: (_)=>sl<AuthBloc>(),child: const SignupPage(),)
+      builder: (context, state) =>  const SignupPage(),
     ),
     GoRoute(
       path: RouteNames.news,

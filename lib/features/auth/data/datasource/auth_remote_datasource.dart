@@ -42,7 +42,10 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
 
   @override
   Future<void> logout() async {
+    print("Data source Logout called");
+
     await supabase.auth.signOut();
+    print("Data source Logout success");
   }
 
   @override

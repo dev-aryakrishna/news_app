@@ -1,17 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
-class SplashPage extends StatelessWidget {
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_event.dart';
+import '../bloc/auth_state.dart';
+
+import '../../../../routes/route_names.dart';
+
+class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
 
   @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.microtask(() {
+      context.read<AuthBloc>().add(CheckSessionRequested());
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Splash'),
-      ),
-      body: Center(
-        child: Text("Splash Page"),
-      ),
+    return BlocListener<AuthBloc, AuthState>(
+      listener: (context, state) {
+        if (state is AuthAuthenticated) {
+          context.go(RouteNames.news);
+        }
+
+        if (state is AuthUnauthenticated) {
+          context.go(RouteNames.login);
+        }
+      },
+      child: const Scaffold(body: Center(child: CircularProgressIndicator())),
     );
   }
 }
