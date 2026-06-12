@@ -9,11 +9,12 @@ class NewsRepositoryImpl implements NewsRepository{
   NewsRepositoryImpl(this.remoteDataSource);
 
  @override
- Future<List<NewsEntity>> getTopHeadliness({
+ Future<List<NewsEntity>> getTopHeadlines({
   required int page,
+  
  })async{
   final articles = await remoteDataSource.getTopHeadlines(page: page, );
-  return articles;
+  return articles.map((e)=>e.toEntity()).toList();
  }
   
    @override
@@ -22,7 +23,7 @@ class NewsRepositoryImpl implements NewsRepository{
      required int page,
     })async{
     final articles = await remoteDataSource.searchNews(query:query,page : page,);
-    return articles;
+  return articles.map((e)=>e.toEntity()).toList();
   }
   
 }

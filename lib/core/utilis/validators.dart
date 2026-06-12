@@ -13,10 +13,10 @@ class Validators {
     if (value == null || value.isEmpty) {
       return " Please enter phone number ";
     }
-    if(value.trim().length<10||value.trim().length>10){
+    if(value.trim().length<10){
       return "Please enter valid number";
     }
-
+    return null;
   }
 
 

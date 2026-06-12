@@ -5,7 +5,7 @@ import '../../domain/entities/news_entity.dart';
 part 'news_model.g.dart';
 
 @JsonSerializable()
-class NewsModel extends NewsEntity {
+class NewsModel {
   @JsonKey(defaultValue: '')
   final String title;
 
@@ -21,15 +21,13 @@ class NewsModel extends NewsEntity {
   @JsonKey(defaultValue: '')
   final String author;
 
-  @JsonKey(defaultValue: '')
+  @JsonKey(name: 'url', defaultValue: '')
   final String articleUrl;
 
   @JsonKey(defaultValue: '')
   final String publishedAt;
 
-  @JsonKey(
-    fromJson: _sourceFromJson,
-  )
+  @JsonKey(fromJson: _sourceFromJson)
   final String source;
 
   const NewsModel({
@@ -38,32 +36,30 @@ class NewsModel extends NewsEntity {
     required this.content,
     required this.imageUrl,
     required this.author,
-    required this.source,
-    required this.publishedAt,
     required this.articleUrl,
-  }) : super(
-          title: title,
-          description: description,
-          content: content,
-          imageUrl: imageUrl,
-          author: author,
-          source: source,
-          publishedAt: publishedAt,
-          articleUrl: articleUrl,
-        );
+    required this.publishedAt,
+    required this.source,
+  });
 
-  factory NewsModel.fromJson(
-    Map<String, dynamic> json,
-  ) =>
+  factory NewsModel.fromJson(Map<String, dynamic> json) =>
       _$NewsModelFromJson(json);
 
   Map<String, dynamic> toJson() =>
       _$NewsModelToJson(this);
 
-  static String _sourceFromJson(
-    Map<String, dynamic>? source,
-  ) {
-    return source?['name'] ?? '';
+  NewsEntity toEntity() {
+    return NewsEntity(
+      title: title,
+      description: description,
+      content: content,
+      imageUrl: imageUrl,
+      author: author,
+      articleUrl: articleUrl,
+      publishedAt: publishedAt,
+      source: source,
+    );
   }
-}
 
+  static String _sourceFromJson(Map<String, dynamic>? source) {
+    return source?['name'] ?? '';
+  }}

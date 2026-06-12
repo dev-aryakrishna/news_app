@@ -4,7 +4,7 @@ import '../models/news_model.dart';
 
 abstract class NewsRemoteDataSource {
   Future<List<NewsModel>> getTopHeadlines({
-    required int page, required String query,
+    required int page, 
   });
 
   Future<List<NewsModel>> searchNews({

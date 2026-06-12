@@ -20,7 +20,8 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
 
-    Future.microtask(() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if(!mounted)return;
       context.read<AuthBloc>().add(CheckSessionRequested());
     });
   }

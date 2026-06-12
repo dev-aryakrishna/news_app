@@ -4,7 +4,7 @@ import '../entities/news_entity.dart';
 abstract class NewsRepository {
 
 
-  Future<List<NewsEntity>>getTopHeadliness({
+  Future<List<NewsEntity>>getTopHeadlines({
     required int page,
   });
 
